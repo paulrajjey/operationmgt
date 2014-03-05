@@ -1,0 +1,15 @@
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <kbase name="finanaceoprmgt" default="true" eventProcessingMode="stream" equalsBehavior="identity">
+    <ksession name="operationSession" type="stateful" default="true" clockType="realtime">
+      <workItemHandlers>
+        <workItemHandler type="new org.jbpm.process.workitem.bpmn2.ServiceTaskHandler(ksession)" name="Service Task"/>
+        <workItemHandler type="new org.jbpm.bpmn2.handler.ReceiveTaskHandler(ksession)" name="Receive Task"/>
+        <workItemHandler type="new org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler()" name="Log"/>
+        <workItemHandler type="new org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler()" name="Email"/>
+        <workItemHandler type="new com.finance.SendMessageHandler(ksession)" name="Send Task"/>
+        <workItemHandler type="new com.finance.RetrieveJobs()" name="FetchWork"/>
+        <workItemHandler type="new com.finance.RetrieveWork()" name="RetrieveWork"/>
+      </workItemHandlers>
+    </ksession>
+  </kbase>
+</kmodule>
